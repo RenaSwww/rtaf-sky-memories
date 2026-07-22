@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SKY MEMORIES - RTAF Museum</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Sarabun', sans-serif;
+    }
+
+    body {
+      background-color: #1a2b4c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
+    }
+
+    /* กรอบจำลองหน้าจอมือถือ/การ์ด */
+    .card-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 480px; /* ขนาดเหมาะกับหน้าจอมือถือ */
+      background-image: url('bg-card.png'); /* ภาพ background การ์ดของคุณ */
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center top;
+      aspect-ratio: 4 / 3; /* ปรับอัตราส่วนตามภาพการ์ดจริง */
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    /* ---------------- โซนแสตมป์ 5 จุด ---------------- */
+    .stamp-container {
+      position: absolute;
+      top: 22%;
+      left: 5%;
+      width: 42%;
+      height: 45%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .stamp-slot {
+      width: 30%;
+      height: 45%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .stamp-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0.3; /* ยังไม่ปลดล็อกจะจาง */
+      filter: grayscale(100%);
+      transition: all 0.5s ease;
+    }
+
+    /* เมื่อปลดล็อกแล้ว (Active) */
+    .stamp-slot.unlocked .stamp-img {
+      opacity: 1;
+      filter: grayscale(0%);
+      animation: stamp-bounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes stamp-bounce {
+      0% { transform: scale(3); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* ---------------- โซนกรอกข้อมูล ---------------- */
+    /* ช่อง Name */
+    .input-name {
+      position: absolute;
+      top: 22%;
+      left: 58%;
+      width: 35%;
+      height: 6%;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      font-weight: bold;
+      color: #1d3557;
+      outline: none;
+    }
+
+    /* ช่องบันทึกความประทับใจด้านล่าง */
+    .input-impression {
+      position: absolute;
+      top: 72%;
+      left: 8%;
+      width: 38%;
+      height: 20%;
+      border: none;
+      background: transparent;
+      font-size: 12px;
+      color: #1d3557;
+      resize: none;
+      outline: none;
+      line-height: 1.4;
+    }
+
+    /* ---------------- ปุ่ม Reset สำหรับทดสอบ ---------------- */
+    .reset-btn {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 1px solid white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-wrapper">
+    <!-- โซนแสตมป์ 5 จุด -->
+    <div class="stamp-container">
+      <div class="stamp-slot" id="slot-1"><img src="stamp-blank.png" class="stamp-img" alt="Stamp 1"></div>
+      <div class="stamp-slot" id="slot-2"><img src="stamp-blank.png" class="stamp-img" alt="Stamp 2"></div>
+      <div class="stamp-slot" id="slot-3"><img src="stamp-blank.png" class="stamp-img" alt="Stamp 3"></div>
+      <div class="stamp-slot" id="slot-4"><img src="stamp-blank.png" class="stamp-img" alt="Stamp 4"></div>
+      <div class="stamp-slot" id="slot-5"><img src="stamp-blank.png" class="stamp-img" alt="Stamp 5"></div>
+    </div>
+
+    <!-- ช่องกรอกชื่อ -->
+    <input type="text" id="userName" class="input-name" placeholder="พิมพ์ชื่อ..." oninput="saveUserData()">
+
+    <!-- ช่องกรอกความประทับใจ -->
+    <textarea id="userImpression" class="input-impression" placeholder="พิมพ์ความประทับใจ..." oninput="saveUserData()"></textarea>
+  </div>
+
+  <button class="reset-btn" onclick="resetStamps()">🔄 รีเซ็ตแสตมป์ (เพื่อทดสอบ)</button>
+
+  <script>
+    // 1. ตรวจสอบ Parameter จาก URL (เช่น ?stamp=1)
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const stampId = urlParams.get('stamp');
+
+      // ถ้ามีการสแกน QR Code ที่ส่งค่า stamp มา
+      if (stampId && stampId >= 1 && stampId <= 5) {
+        localStorage.setItem('stamp_' + stampId, 'unlocked');
+        // ลบ параметр ออกจาก URL เพื่อความสวยงาม
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+
+      // โหลดสถานะแสตมป์และข้อมูลที่เคยบันทึกไว้
+      renderStamps();
+      loadUserData();
+    };
+
+    // 2. แสดงผลแสตมป์ตามสถานะใน LocalStorage
+    function renderStamps() {
+      for (let i = 1; i <= 5; i++) {
+        const isUnlocked = localStorage.getItem('stamp_' + i) === 'unlocked';
+        const slot = document.getElementById('slot-' + i);
+        const img = slot.querySelector('img');
+
+        if (isUnlocked) {
+          slot.classList.add('unlocked');
+          img.src = 'stamp-active.png'; // เปลี่ยนเป็นรูปแสตมป์สี
+        }
+      }
+    }
+
+    // 3. บันทึกชื่อและข้อความลงเครื่องอัตโนมัติ
+    function saveUserData() {
+      const name = document.getElementById('userName').value;
+      const impression = document.getElementById('userImpression').value;
+      localStorage.setItem('user_name', name);
+      localStorage.setItem('user_impression', impression);
+    }
+
+    // 4. ดึงข้อมูลชื่อและข้อความเดิมมาแสดง
+    function loadUserData() {
+      if(localStorage.getItem('user_name')) {
+        document.getElementById('userName').value = localStorage.getItem('user_name');
+      }
+      if(localStorage.getItem('user_impression')) {
+        document.getElementById('userImpression').value = localStorage.getItem('user_impression');
+      }
+    }
+
+    // 5. ฟังก์ชันรีเซ็ตข้อมูลสำหรับทดสอบ
+    function resetStamps() {
+      if(confirm("คุณต้องการรีเซ็ตแสตมป์ทั้งหมดใช่หรือไม่?")) {
+        localStorage.clear();
+        location.reload();
+      }
+    }
+  </script>
+</body>
+</html>
