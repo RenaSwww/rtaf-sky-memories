@@ -22,7 +22,6 @@
       padding: 10px;
     }
 
-    /* ระบบจัดการการสลับหน้า */
     .page {
       display: none;
       width: 100%;
@@ -104,7 +103,7 @@
     }
 
     /* ---------------- 2. หน้าการ์ดแสตมป์ (PASSPORT) ---------------- */
-    /* จุดสำคัญ: ต้องมี position: relative เพื่อล็อคกรอบอ้างอิงพิกัด */
+    /* กล่องหลักคุมกรอบรูปภาพแบบล็อคเกาะแน่น */
     .card-wrapper {
       position: relative !important;
       width: 100%;
@@ -118,7 +117,7 @@
       overflow: hidden;
     }
 
-    /* ขนาดช่องวางแสตมป์ */
+    /* ช่องแสตมป์ */
     .stamp-slot {
       position: absolute;
       width: 11%;  
@@ -128,14 +127,12 @@
       align-items: center;
     }
 
-    /* พิกัดช่องแสตมป์ 5 จุด */
     #slot-1 { top: 20.0%; left: 12.2%; }
     #slot-2 { top: 20.0%; left: 28.2%; }
     #slot-3 { top: 47.0%; left: 6.5%;  }
     #slot-4 { top: 47.0%; left: 22.0%; }
     #slot-5 { top: 47.0%; left: 37.5%; }
 
-    /* รูปภาพตราแสตมป์ */
     .stamp-mark {
       display: none;
       width: 100%;
@@ -156,14 +153,14 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* ---------------- ล็อคพิกัดช่องกรอกข้อมูล ---------------- */
+    /* ---------------- ล็อคตำแหน่งช่องกรอกข้อความในรูป ---------------- */
     
-    /* 1. ช่องกรอกชื่อ (แยกไปฝั่งขวา ตรงคำว่า NAME) */
+    /* ช่องชื่อ (การ์ดขวา ข้างคำว่า NAME) */
     .input-name {
       position: absolute !important;
       top: 10.5% !important;
-      left: 66.5.0% !important;
-      width: 17.5% !important;
+      left: 66.5% !important;
+      width: 15.0% !important;
       height: 7.0% !important;
       border: none;
       background: transparent;
@@ -172,9 +169,10 @@
       color: #1a2536;
       outline: none;
       padding: 0 2px;
+      z-index: 10;
     }
 
-    /* 2. ช่องพิมพ์ความประทับใจ (ช่องฝั่งซ้ายล่าง) */
+    /* ช่องพิมพ์ความประทับใจ (การ์ดซ้ายล่าง) */
     .input-impression {
       position: absolute !important;
       top: 75.0% !important;
@@ -191,9 +189,9 @@
       padding: 0;
       margin: 0;
       letter-spacing: 0.2px;
+      z-index: 10;
     }
 
-    /* ปุ่มนำทาง */
     .nav-back-btn {
       margin-top: 15px;
       background: rgba(255, 255, 255, 0.2);
@@ -237,6 +235,7 @@
 
   <!-- ================= PAGE 2: หน้าการ์ดแสตมป์ (PASSPORT) ================= -->
   <div id="page-stamp" class="page">
+    <!-- กล่องหลักสะสมองค์ประกอบทั้งหมดอยู่ในนี้ -->
     <div class="card-wrapper">
       <!-- ช่องวางแสตมป์ 5 จุด -->
       <div class="stamp-slot" id="slot-1"><div class="stamp-mark" style="background-image: url('stamp-1.png');"></div></div>
@@ -245,7 +244,7 @@
       <div class="stamp-slot" id="slot-4"><div class="stamp-mark" style="background-image: url('stamp-4.png');"></div></div>
       <div class="stamp-slot" id="slot-5"><div class="stamp-mark" style="background-image: url('stamp-5.png');"></div></div>
 
-      <!-- ช่องกรอกข้อมูล -->
+      <!-- ช่องกรอกข้อมูล (ย้ายเข้ามาอยู่ใน card-wrapper เพื่อให้ล็อคติดภาพแน่น) -->
       <input type="text" id="userName" class="input-name" placeholder="พิมพ์ชื่อ..." oninput="saveUserData()">
       <textarea id="userImpression" class="input-impression" placeholder="พิมพ์ความประทับใจ..." oninput="saveUserData()"></textarea>
     </div>
