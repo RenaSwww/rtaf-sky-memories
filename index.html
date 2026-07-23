@@ -104,8 +104,9 @@
     }
 
     /* ---------------- 2. หน้าการ์ดแสตมป์ (PASSPORT) ---------------- */
+    /* จุดสำคัญ: ต้องมี position: relative เพื่อล็อคกรอบอ้างอิงพิกัด */
     .card-wrapper {
-      position: relative;
+      position: relative !important;
       width: 100%;
       background-image: url('bg-card.png');
       background-size: 100% 100%;
@@ -155,15 +156,15 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* ---------------- ปรับพิกัดช่องกรอกข้อมูลตามกรอบสีแดง ---------------- */
+    /* ---------------- ล็อคพิกัดช่องกรอกข้อมูล ---------------- */
     
-    /* 1. ช่องกรอกชื่อ (การ์ดขวา ข้างคำว่า NAME เหนือเส้นใต้) */
+    /* 1. ช่องกรอกชื่อ (แยกไปฝั่งขวา ตรงคำว่า NAME) */
     .input-name {
-      position: absolute;
-      top: 10.5%;           /* ความสูงตรงบรรทัด NAME */
-      left: 64.0%;          /* จุดเริ่มต้นถัดจากคำว่า NAME ไปทางขวา */
-      width: 17.5%;         /* ความกว้างสุดเส้นใต้ */
-      height: 7.0%;
+      position: absolute !important;
+      top: 10.5% !important;
+      left: 64.0% !important;
+      width: 17.5% !important;
+      height: 7.0% !important;
       border: none;
       background: transparent;
       font-size: 11px;
@@ -173,20 +174,20 @@
       padding: 0 2px;
     }
 
-    /* 2. ช่องพิมพ์ความประทับใจ (การ์ดซ้ายล่าง ระหว่างอัญประกาศ “ ”) */
+    /* 2. ช่องพิมพ์ความประทับใจ (ช่องฝั่งซ้ายล่าง) */
     .input-impression {
-      position: absolute;
-      top: 75.0%;           /* เริ่มต้นที่บรรทัดแรกเหนือเส้นแรก */
-      left: 11.5%;          /* จุดเริ่มต้นถัดจากอัญประกาศตัวเปิด “ */
-      width: 28.5%;         /* ความกว้างก่อนถึงอัญประกาศตัวปิด ” */
-      height: 19.5%;        /* ครอบคลุม 3 เส้นบรรทัด */
+      position: absolute !important;
+      top: 75.0% !important;
+      left: 11.5% !important;
+      width: 28.5% !important;
+      height: 19.5% !important;
       border: none;
       background: transparent;
-      font-size: 10px;       /* ปรับขนาดตัวอักษรให้อยู่บนเส้นสวยงาม */
+      font-size: 10px;
       color: #1a2536;
       resize: none;
       outline: none;
-      line-height: 1.62;    /* ระยะห่างบรรทัดให้ตกลงบนเส้นพอดี */
+      line-height: 1.62;
       padding: 0;
       margin: 0;
       letter-spacing: 0.2px;
