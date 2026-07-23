@@ -22,7 +22,6 @@
       padding: 10px;
     }
 
-    /* สลับการแสดงผลหน้า */
     .page {
       display: none;
       width: 100%;
@@ -90,6 +89,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
+      text-decoration: none;
     }
 
     .btn-main:active {
@@ -191,36 +191,16 @@
       line-height: 1.3;
     }
 
-    /* ---------------- 3. หน้าแผนที่ฝัง Canva (Digital Map) ---------------- */
+    /* ---------------- 3. หน้าเปิดแผนที่ ---------------- */
     .map-card {
       width: 100%;
       background: white;
       border-radius: 16px;
-      padding: 12px;
+      padding: 25px 20px;
       text-align: center;
       box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
 
-    .canva-embed-container {
-      position: relative;
-      width: 100%;
-      height: 0;
-      padding-top: 130%; /* ปรับความสูงกรอบแผนที่ให้อ่านง่ายบนมือถือ */
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    .canva-embed-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* ปุ่มนำทางด้านล่าง */
     .nav-back-btn {
       margin-top: 15px;
       background: rgba(255, 255, 255, 0.2);
@@ -270,15 +250,16 @@
     <button class="nav-back-btn" onclick="switchPage('page-menu')">🏠 กลับหน้าหลัก</button>
   </div>
 
-  <!-- ================= PAGE 3: หน้าแผนที่ฝัง CANVA ================= -->
+  <!-- ================= PAGE 3: หน้ากดเปิดแผนที่ CANVA ================= -->
   <div id="page-map" class="page">
     <div class="map-card">
-      <h3 style="color: #1d3557; margin-bottom: 6px; font-size: 16px;">🗺️ แผนที่ผังพิพิธภัณฑ์</h3>
+      <h3 style="color: #1d3557; margin-bottom: 8px; font-size: 18px;">🗺️ แผนที่ผังพิพิธภัณฑ์</h3>
+      <p style="font-size: 13px; color: #6c757d; margin-bottom: 20px;">กดปุ่มด้านล่างเพื่อเปิดดูแผนที่และจุดสะสมแสตมป์แบบเต็มหน้าจอ</p>
       
-      <!-- โซนฝังลิงก์ Canva -->
-      <div class="canva-embed-container">
-        <iframe loading="lazy" src="https://rtaf-museum.my.canva.site/map-rtaf-museum/" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
-      </div>
+      <!-- ปุ่มลิงก์ตรงไปยัง Canva Map -->
+      <a href="https://rtaf-museum.my.canva.site/map-rtaf-museum/" target="_blank" class="btn-main" style="background: linear-gradient(90deg, #2a9d8f 0%, #264653 100%);">
+        📌 เปิดแผนที่ผังพิพิธภัณฑ์ (Canva Map)
+      </a>
     </div>
 
     <button class="nav-back-btn" onclick="switchPage('page-menu')">🏠 กลับหน้าหลัก</button>
