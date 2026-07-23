@@ -154,19 +154,40 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* ---------------- โซนช่องกรอกข้อมูล ---------------- */
+   /* ---------------- โซนช่องกรอกข้อมูลตรงบรรทัด ---------------- */
+    /* ช่องกรอกชื่อ (ตรงเส้น NAME _____) */
     .input-name {
       position: absolute;
       top: 13.5%;
-      left: 62%;
+      left: 61.5%;
       width: 28%;
       height: 6%;
       border: none;
       background: transparent;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: bold;
       color: #1d3557;
       outline: none;
+      padding-left: 5px;
+    }
+
+    /* ช่องพิมพ์ความประทับใจ (ตรงเส้นบรรทัด 3-4 เส้นด้านล่าง) */
+    .input-impression {
+      position: absolute;
+      top: 77.2%;           /* ปรับจุดเริ่มต้นบรรทัดแรก */
+      left: 8.5%;           /* ปรับขอบซ้ายให้ตรงกิ๊บการ์ด */
+      width: 37.5%;         /* ความกว้างสุดเส้นบรรทัด */
+      height: 18.5%;        /* ความสูงคลุม 3 เส้นบรรทัด */
+      border: none;
+      background: transparent;
+      font-size: 11px;       /* ขนาดตัวอักษรพอดีช่อง */
+      color: #1d3557;
+      resize: none;
+      outline: none;
+      line-height: 1.75;    /* ระยะห่างบรรทัด (ขยับตัวอักษรให้ลงตรงเส้นพอดี) */
+      padding: 0;
+      margin: 0;
+      letter-spacing: 0.3px;
     }
 
     .input-impression {
