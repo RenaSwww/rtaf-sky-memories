@@ -64,13 +64,13 @@
     .menu-subtitle {
       font-size: 14px;
       color: #e0e1dd;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
 
     .menu-btn-group {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 15px;
       width: 100%;
     }
 
@@ -78,9 +78,9 @@
       background: linear-gradient(90deg, #48cae4 0%, #0077b6 100%);
       color: white;
       border: none;
-      padding: 15px;
+      padding: 16px;
       border-radius: 12px;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(0, 119, 182, 0.4);
@@ -102,99 +102,6 @@
       box-shadow: 0 4px 15px rgba(114, 239, 221, 0.3);
     }
 
-    .btn-guide {
-      background: rgba(255, 255, 255, 0.15);
-      color: #e0e1dd;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: none;
-    }
-
-    /* ---------------- ป๊อปอัปคู่มือการเล่น (HOW TO PLAY MODAL) ---------------- */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.75);
-      z-index: 100;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background: #22334d;
-      border: 2px solid #64dfdf;
-      border-radius: 20px;
-      padding: 25px 20px;
-      max-width: 450px;
-      width: 100%;
-      color: white;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      position: relative;
-    }
-
-    .modal-title {
-      font-size: 20px;
-      color: #72efdd;
-      text-align: center;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
-
-    .step-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 15px;
-      background: rgba(255,255,255,0.05);
-      padding: 12px;
-      border-radius: 12px;
-    }
-
-    .step-number {
-      background: #0077b6;
-      color: white;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-
-    .step-text h4 {
-      font-size: 14px;
-      color: #48cae4;
-      margin-bottom: 2px;
-    }
-
-    .step-text p {
-      font-size: 12px;
-      color: #d1d5db;
-      line-height: 1.4;
-    }
-
-    .btn-close-modal {
-      width: 100%;
-      background: linear-gradient(90deg, #e63946 0%, #d62828 100%);
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
     /* ---------------- 2. หน้าการ์ดแสตมป์ (PASSPORT) ---------------- */
     .card-wrapper {
       position: relative !important;
@@ -209,6 +116,7 @@
       overflow: hidden;
     }
 
+    /* ขนาดช่องวางแสตมป์ */
     .stamp-slot {
       position: absolute;
       width: 11%;  
@@ -218,11 +126,13 @@
       align-items: center;
     }
 
-    #slot-1 { top: 20.0%; left: 12.2%; }
-    #slot-2 { top: 20.0%; left: 28.2%; }
-    #slot-3 { top: 47.0%; left: 6.5%;  }
-    #slot-4 { top: 47.0%; left: 22.0%; }
-    #slot-5 { top: 47.0%; left: 37.5%; }
+    /* พิกัดช่องแสตมป์ 5 จุด (ปรับดันขึ้นมาให้ตรงกลางช่องสีขาว) */
+    #slot-1 { top: 16.5%; left: 12.2%; }
+    #slot-2 { top: 16.5%; left: 28.2%; }
+
+    #slot-3 { top: 41.5%; left: 6.5%;  }
+    #slot-4 { top: 41.5%; left: 22.0%; }
+    #slot-5 { top: 41.5%; left: 37.5%; }
 
     .stamp-mark {
       display: none;
@@ -244,7 +154,7 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* ช่องกรอกข้อความ */
+    /* ---------------- ล็อคตำแหน่งช่องกรอกข้อความในรูป ---------------- */
     .input-name {
       position: absolute !important;
       top: 10.5% !important;
@@ -317,43 +227,7 @@
         <button class="btn-main btn-map" onclick="openCanvaMap()">
           🗺️ แผนที่จุดกิจกรรม (Interactive Map)
         </button>
-        <button class="btn-main btn-guide" onclick="toggleModal(true)">
-          📖 วิธีการสะสมแสตมป์
-        </button>
       </div>
-    </div>
-  </div>
-
-  <!-- ================= POPUP: คู่มือการใช้งาน ================= -->
-  <div id="guideModal" class="modal-overlay">
-    <div class="modal-content">
-      <div class="modal-title">✈️ วิธีการสะสมแสตมป์</div>
-      
-      <div class="step-item">
-        <div class="step-number">1</div>
-        <div class="step-text">
-          <h4>เปิดแผนที่นำทาง</h4>
-          <p>กดปุ่ม "แผนที่จุดกิจกรรม" เพื่อดูตำแหน่งจัดแสดงเครื่องบินทั้ง 5 จุดภายในพิพิธภัณฑ์</p>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-number">2</div>
-        <div class="step-text">
-          <h4>สแกน QR Code เพื่อปั๊มตรา</h4>
-          <p>เมื่อเดินทางไปถึงเครื่องบินแต่ละจุด ให้ใช้กล้องมือถือสแกน QR Code ประจำจุดเพื่อปลดล็อกตราแสตมป์</p>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-number">3</div>
-        <div class="step-text">
-          <h4>บันทึกความทรงจำ</h4>
-          <p>สะสมแสตมป์ให้ครบ 5 ดวง พิมพ์ชื่อและความประทับใจ แล้วแคปหน้าจอเก็บไว้เป็นที่ระลึก!</p>
-        </div>
-      </div>
-
-      <button class="btn-close-modal" onclick="toggleModal(false)">เข้าสู่กิจกรรม</button>
     </div>
   </div>
 
@@ -385,15 +259,6 @@
 
     function openCanvaMap() {
       window.open('https://rtaf-museum.my.canva.site/map-rtaf-museum/', '_blank');
-    }
-
-    function toggleModal(show) {
-      const modal = document.getElementById('guideModal');
-      if (show) {
-        modal.classList.add('active');
-      } else {
-        modal.classList.remove('active');
-      }
     }
 
     window.onload = function() {
