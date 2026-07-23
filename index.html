@@ -101,6 +101,29 @@
       color: #1a2536;
       box-shadow: 0 4px 15px rgba(114, 239, 221, 0.3);
     }
+    
+    .btn-rules {
+      background: linear-gradient(90deg, #ffb703 0%, #fb8500 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(251, 133, 0, 0.4);
+    }
+
+    /* ---------------- หน้าวิธีเล่น (HOW TO PLAY) ---------------- */
+    .rules-content {
+      text-align: left;
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: #f8f9fa;
+      padding: 10px;
+    }
+
+    .rules-content li {
+      margin-bottom: 12px;
+    }
+
+    .rules-content strong {
+      color: #72efdd;
+    }
 
     /* ---------------- 2. หน้าการ์ดแสตมป์ (PASSPORT) ---------------- */
     .card-wrapper {
@@ -126,13 +149,13 @@
       align-items: center;
     }
 
-    /* พิกัดช่องแสตมป์ 5 จุด (ปรับลงตำแหน่งกึ่งกลางช่องสีขาวพอดี) */
+    /* พิกัดช่องแสตมป์ 5 จุด */
     #slot-1 { top: 18.0%; left: 11.0%; }
     #slot-2 { top: 18.0%; left: 27.5%; }
 
     #slot-3 { top: 45.0%; left: 5.2%;  }
     #slot-4 { top: 45.0%; left: 21.0%; }
-    #slot-5 { top: 45.0%; left: 36.0%; }
+    #slot-5 { top: 45.0%; left: 36.5%; }
 
     .stamp-mark {
       display: none;
@@ -199,6 +222,8 @@
       border-radius: 20px;
       font-size: 13px;
       cursor: pointer;
+      display: inline-flex;
+      justify-content: center;
     }
 
     .reset-btn {
@@ -227,11 +252,31 @@
         <button class="btn-main btn-map" onclick="openCanvaMap()">
           🗺️ แผนที่จุดกิจกรรม (Interactive Map)
         </button>
+        <!-- เพิ่มปุ่มวิธีเล่นตรงนี้ -->
+        <button class="btn-main btn-rules" onclick="switchPage('page-rules')">
+          📖 วิธีเล่นกิจกรรม (How to Play)
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- ================= PAGE 2: หน้าการ์ดแสตมป์ (PASSPORT) ================= -->
+  <!-- ================= PAGE 2: หน้าวิธีเล่น (HOW TO PLAY) ================= -->
+  <div id="page-rules" class="page">
+    <div class="menu-card">
+      <div class="menu-title" style="font-size: 24px; margin-bottom: 20px;">📖 วิธีเล่นกิจกรรม</div>
+      
+      <ul class="rules-content">
+        <li><strong>1. ตามหา QR Code:</strong> เดินชมพิพิธภัณฑ์ และตามหาป้าย QR Code ประจำจุดแสตมป์ทั้ง 5 จุด</li>
+        <li><strong>2. สแกนรับแสตมป์:</strong> ใช้สมาร์ทโฟนสแกน QR Code เพื่อสะสมตราประทับเครื่องบินลงใน Passport อัตโนมัติ</li>
+        <li><strong>3. พิมพ์ความประทับใจ:</strong> สามารถพิมพ์ชื่อและข้อความความประทับใจลงบนการ์ดได้ตามต้องการ</li>
+        <li><strong>4. สะสมให้ครบ:</strong> เมื่อสะสมครบทั้ง 5 จุด สามารถแคปหน้าจอไว้เป็นที่ระลึก หรือนำไปแลกรับของรางวัล (ถ้ามี)</li>
+      </ul>
+
+      <button class="nav-back-btn" style="width: 100%; margin-top: 25px;" onclick="switchPage('page-menu')">🏠 กลับหน้าหลัก</button>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 3: หน้าการ์ดแสตมป์ (PASSPORT) ================= -->
   <div id="page-stamp" class="page">
     <div class="card-wrapper">
       <!-- ช่องวางแสตมป์ 5 จุด -->
@@ -247,7 +292,7 @@
     </div>
 
     <button class="nav-back-btn" onclick="switchPage('page-menu')">🏠 กลับหน้าหลัก</button>
-    <button class="reset-btn" onclick="resetStamps()">🔄 รีเซ็ตแสตมป์ทั้งหมด </button>
+    <button class="reset-btn" onclick="resetStamps()">🔄 รีเซ็ตแสตมป์ทั้งหมด (เพื่อทดสอบ)</button>
   </div>
 
   <!-- ================= SCRIPT การทำงาน ================= -->
