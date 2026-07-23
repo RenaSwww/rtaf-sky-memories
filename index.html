@@ -117,7 +117,7 @@
       overflow: hidden;
     }
 
-    /* ย่อขนาดช่องแสตมป์ลง ( width 11% / height 19% ) */
+    /* ขนาดช่องวางแสตมป์ */
     .stamp-slot {
       position: absolute;
       width: 11%;  
@@ -127,13 +127,12 @@
       align-items: center;
     }
 
-    /* ปรับพิกัดให้อยู่กึ่งกลางช่องสีขาวพอดี */
-    #slot-1 { top: 20.0%; left: 12.2%; } /* แถวบน - ซ้าย */
-    #slot-2 { top: 20.0%; left: 28.2%; } /* แถวบน - ขวา */
-    
-    #slot-3 { top: 47.0%; left: 6.5%;  } /* แถวล่าง - ซ้าย */
-    #slot-4 { top: 47.0%; left: 22.0%; } /* แถวล่าง - กลาง */
-    #slot-5 { top: 47.0%; left: 37.5%; } /* แถวล่าง - ขวา */
+    /* พิกัดช่องแสตมป์ 5 จุด */
+    #slot-1 { top: 20.0%; left: 12.2%; }
+    #slot-2 { top: 20.0%; left: 28.2%; }
+    #slot-3 { top: 47.0%; left: 6.5%;  }
+    #slot-4 { top: 47.0%; left: 22.0%; }
+    #slot-5 { top: 47.0%; left: 37.5%; }
 
     /* รูปภาพตราแสตมป์ */
     .stamp-mark {
@@ -156,38 +155,41 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* ---------------- โซนช่องกรอกข้อความ ---------------- */
+    /* ---------------- ปรับพิกัดช่องกรอกข้อมูลตามกรอบสีแดง ---------------- */
+    
+    /* 1. ช่องกรอกชื่อ (การ์ดขวา ข้างคำว่า NAME เหนือเส้นใต้) */
     .input-name {
       position: absolute;
-      top: 76.5%;
-      left: 25%;
-      width: 28%;
-      height: 6%;
-      border: none;
-      background: transparent;
-      font-size: 12px;
-      font-weight: bold;
-      color: #1d3557;
-      outline: none;
-      padding-left: 5px;
-    }
-
-    .input-impression {
-      position: absolute;
-      top: 77.2%;
-      left: 8.5%;
-      width: 37.5%;
-      height: 18.5%;
+      top: 10.5%;           /* ความสูงตรงบรรทัด NAME */
+      left: 64.0%;          /* จุดเริ่มต้นถัดจากคำว่า NAME ไปทางขวา */
+      width: 17.5%;         /* ความกว้างสุดเส้นใต้ */
+      height: 7.0%;
       border: none;
       background: transparent;
       font-size: 11px;
-      color: #1d3557;
+      font-weight: bold;
+      color: #1a2536;
+      outline: none;
+      padding: 0 2px;
+    }
+
+    /* 2. ช่องพิมพ์ความประทับใจ (การ์ดซ้ายล่าง ระหว่างอัญประกาศ “ ”) */
+    .input-impression {
+      position: absolute;
+      top: 75.0%;           /* เริ่มต้นที่บรรทัดแรกเหนือเส้นแรก */
+      left: 11.5%;          /* จุดเริ่มต้นถัดจากอัญประกาศตัวเปิด “ */
+      width: 28.5%;         /* ความกว้างก่อนถึงอัญประกาศตัวปิด ” */
+      height: 19.5%;        /* ครอบคลุม 3 เส้นบรรทัด */
+      border: none;
+      background: transparent;
+      font-size: 10px;       /* ปรับขนาดตัวอักษรให้อยู่บนเส้นสวยงาม */
+      color: #1a2536;
       resize: none;
       outline: none;
-      line-height: 1.75;
+      line-height: 1.62;    /* ระยะห่างบรรทัดให้ตกลงบนเส้นพอดี */
       padding: 0;
       margin: 0;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
     }
 
     /* ปุ่มนำทาง */
