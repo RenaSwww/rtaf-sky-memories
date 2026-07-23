@@ -26,7 +26,7 @@
     .page {
       display: none;
       width: 100%;
-      max-width: 550px; /* ขนาดความกว้างหน้าเว็บ */
+      max-width: 550px;
       animation: fadeIn 0.4s ease;
     }
 
@@ -107,7 +107,7 @@
     .card-wrapper {
       position: relative;
       width: 100%;
-      background-image: url('bg-card.png'); /* เรียกใช้ไฟล์ bg-card.png บน GitHub */
+      background-image: url('bg-card.png');
       background-size: 100% 100%;
       background-repeat: no-repeat;
       background-position: center;
@@ -117,23 +117,23 @@
       overflow: hidden;
     }
 
-    /* วางตำแหน่งช่องแสตมป์แบบ Absolute ตรงตามช่องสีขาวบนการ์ด */
+    /* ย่อขนาดช่องแสตมป์ลง ( width 11% / height 19% ) */
     .stamp-slot {
       position: absolute;
-      width: 15%;  /* ความกว้างตัวแสตมป์ */
-      height: 26%; /* ความสูงตัวแสตมป์ */
+      width: 11%;  
+      height: 19%; 
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    /* พิกัดแต่ละช่องแสตมป์ (ปรับตำแหน่งให้ตรงช่องสีขาว) */
-    #slot-1 { top: 16.5%; left: 10.2%; } /* แถวบน - ซ้าย */
-    #slot-2 { top: 16.5%; left: 26.2%; } /* แถวบน - ขวา */
+    /* ปรับพิกัดให้อยู่กึ่งกลางช่องสีขาวพอดี */
+    #slot-1 { top: 20.0%; left: 12.2%; } /* แถวบน - ซ้าย */
+    #slot-2 { top: 20.0%; left: 28.2%; } /* แถวบน - ขวา */
     
-    #slot-3 { top: 43.5%; left: 4.5%;  } /* แถวล่าง - ซ้าย */
-    #slot-4 { top: 43.5%; left: 20.0%; } /* แถวล่าง - กลาง */
-    #slot-5 { top: 43.5%; left: 35.5%; } /* แถวล่าง - ขวา */
+    #slot-3 { top: 47.0%; left: 6.5%;  } /* แถวล่าง - ซ้าย */
+    #slot-4 { top: 47.0%; left: 22.0%; } /* แถวล่าง - กลาง */
+    #slot-5 { top: 47.0%; left: 37.5%; } /* แถวล่าง - ขวา */
 
     /* รูปภาพตราแสตมป์ */
     .stamp-mark {
@@ -143,8 +143,7 @@
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      transform: scale(1.05); /* ขยายภาพแสตมป์ให้เต็มช่องยิ่งขึ้น */
-      filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.25));
+      filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2));
     }
 
     .stamp-slot.unlocked .stamp-mark {
@@ -154,11 +153,10 @@
 
     @keyframes stamp-pop {
       0% { transform: scale(2.2); opacity: 0; }
-      100% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
-    /* ---------------- โซนช่องกรอกข้อความให้ตรงเส้น ---------------- */
-    /* ช่องกรอกชื่อ (ตรงเส้น NAME _____) */
+    /* ---------------- โซนช่องกรอกข้อความ ---------------- */
     .input-name {
       position: absolute;
       top: 13.5%;
@@ -174,20 +172,19 @@
       padding-left: 5px;
     }
 
-    /* ช่องพิมพ์ความประทับใจ (ตรงเส้นบรรทัด 3 เส้นด้านล่าง) */
     .input-impression {
       position: absolute;
-      top: 77.2%;           /* จุดเริ่มต้นบรรทัดแรก */
-      left: 8.5%;           /* ขอบซ้ายตรงกับเส้น */
-      width: 37.5%;         /* ความกว้างสุดเส้น */
-      height: 18.5%;        /* ความสูงคลุม 3 บรรทัด */
+      top: 77.2%;
+      left: 8.5%;
+      width: 37.5%;
+      height: 18.5%;
       border: none;
       background: transparent;
-      font-size: 11px;       /* ขนาดตัวหนังสือพอดีช่อง */
+      font-size: 11px;
       color: #1d3557;
       resize: none;
       outline: none;
-      line-height: 1.75;    /* ระยะห่างบรรทัดให้ตรงกับเส้นบนการ์ด */
+      line-height: 1.75;
       padding: 0;
       margin: 0;
       letter-spacing: 0.3px;
@@ -238,7 +235,7 @@
   <!-- ================= PAGE 2: หน้าการ์ดแสตมป์ (PASSPORT) ================= -->
   <div id="page-stamp" class="page">
     <div class="card-wrapper">
-      <!-- ช่องวางแสตมป์ 5 จุด (ดึงไฟล์ stamp-1.png ถึง stamp-5.png) -->
+      <!-- ช่องวางแสตมป์ 5 จุด -->
       <div class="stamp-slot" id="slot-1"><div class="stamp-mark" style="background-image: url('stamp-1.png');"></div></div>
       <div class="stamp-slot" id="slot-2"><div class="stamp-mark" style="background-image: url('stamp-2.png');"></div></div>
       <div class="stamp-slot" id="slot-3"><div class="stamp-mark" style="background-image: url('stamp-3.png');"></div></div>
@@ -256,23 +253,19 @@
 
   <!-- ================= SCRIPT การทำงาน ================= -->
   <script>
-    // 1. ฟังก์ชันสลับหน้า
     function switchPage(pageId) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
     }
 
-    // 2. ฟังก์ชันเปิดแผนที่ Canva ในแท็บใหม่
     function openCanvaMap() {
       window.open('https://rtaf-museum.my.canva.site/map-rtaf-museum/', '_blank');
     }
 
-    // 3. ทำงานอัตโนมัติเมื่อเปิดหน้าเว็บ
     window.onload = function() {
       const urlParams = new URLSearchParams(window.location.search);
       const stampId = urlParams.get('stamp');
 
-      // ถ้านักท่องเที่ยวสแกน QR Code มา ให้เด้งเข้าหน้าแสตมป์แล้วปั๊มตราทันที
       if (stampId && stampId >= 1 && stampId <= 5) {
         localStorage.setItem('stamp_' + stampId, 'unlocked');
         window.history.replaceState({}, document.title, window.location.pathname);
@@ -283,7 +276,6 @@
       loadUserData();
     };
 
-    // 4. แสดงผลตราแสตมป์ที่ปลดล็อกแล้ว
     function renderStamps() {
       for (let i = 1; i <= 5; i++) {
         const isUnlocked = localStorage.getItem('stamp_' + i) === 'unlocked';
@@ -295,7 +287,6 @@
       }
     }
 
-    // 5. บันทึกและโหลดข้อมูลชื่อ/ความประทับใจ
     function saveUserData() {
       localStorage.setItem('user_name', document.getElementById('userName').value);
       localStorage.setItem('user_impression', document.getElementById('userImpression').value);
@@ -310,7 +301,6 @@
       }
     }
 
-    // 6. ฟังก์ชันรีเซ็ตแสตมป์เพื่อทดสอบ
     function resetStamps() {
       if(confirm("คุณต้องการรีเซ็ตแสตมป์ทั้งหมดเพื่อทดสอบใหม่ใช่ไหม?")) {
         localStorage.clear();
